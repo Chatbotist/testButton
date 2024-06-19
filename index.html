@@ -63,7 +63,7 @@
     <script type="text/javascript">
         (function(w,d,s,l){
             w[l]=w[l]||[];
-            w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5zZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});
+            w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5sZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});
             var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s);
             j.async=true;
@@ -87,8 +87,14 @@
 
             if (avatarUrl) {
                 var userAvatarElem = document.getElementById('userAvatar');
+                userAvatarElem.onerror = function() {
+                    console.error("Failed to load avatar image.");
+                    userAvatarElem.style.display = 'none'; // Скрываем изображение, если не удалось загрузить
+                };
                 userAvatarElem.src = avatarUrl;
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
+            } else {
+                console.warn("User avatar URL is not available.");
             }
 
             document.getElementById('username').innerText = '@' + username;
