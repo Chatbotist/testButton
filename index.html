@@ -1,83 +1,40 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Оплата</title>
-  <style>
-    .pay-button {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .pay-button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://lcvr.net/css/lgtV2.css" rel="stylesheet">
+    <title>LeadConverter</title>
+
+            <meta property="og:title" content="Разработка чат-ботов | Создание умных чат-ботов для вашего бизнеса"/>
+                <meta property="og:description" content="Профессиональная разработка чат-ботов для вашего бизнеса. Создаем умные и удобные чат-боты для автоматизации общения с клиентами, продаж и поддержки.">
+    
+                        <meta property="og:image" content="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg"/>
+                <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://lcvr.net/88TG"/>
+
+
+    <script>console.warn('counter vk_retarget not contain required params')</script><script>console.warn('counter yandex_metrika not contain required params')</script><script>console.warn('counter google_analytics not contain required params')</script>
 </head>
 <body>
-  <button class="pay-button" id="payButton">Оплатить</button>
+    <script>console.warn('counter vk_retarget not contain required params')</script><script>console.warn('counter yandex_metrika not contain required params')</script><script>console.warn('counter google_analytics not contain required params')</script>
 
-  <script>
-    function generateUUID() {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
-    }
+<script>
+    window.lgtData = JSON.parse("{\"title\":\"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0447\\u0430\\u0442-\\u0431\\u043e\\u0442\\u043e\\u0432\",\"link\":\"88TG\",\"header\":\"\",\"body\":\"<!DOCTYPE html>\\n<html lang=\\\"ru\\\">\\n<head>\\n  <meta charset=\\\"UTF-8\\\">\\n  <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n  <title>\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430<\\\/title>\\n  <style>\\n    .pay-button {\\n      padding: 10px 20px;\\n      font-size: 16px;\\n      color: white;\\n      background-color: #007bff;\\n      border: none;\\n      border-radius: 5px;\\n      cursor: pointer;\\n    }\\n    .pay-button:hover {\\n      background-color: #0056b3;\\n    }\\n  <\\\/style>\\n<\\\/head>\\n<body>\\n  <button class=\\\"pay-button\\\" id=\\\"payButton\\\">\\u041e\\u043f\\u043b\\u0430\\u0442\\u0438\\u0442\\u044c<\\\/button>\\n\\n  <script>\\n    function generateUUID() {\\n      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(\\\/[xy]\\\/g, function(c) {\\n        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);\\n        return v.toString(16);\\n      });\\n    }\\n\\n    document.getElementById('payButton').addEventListener('click', function() {\\n      const authData = 'MzEyOTI4OmxpdmVfRzV4LXh3S0UySGpHd1FyTjJpanc4U3N4LUF2VXUzWERCUDhMeFV2TGtXaw==';\\n      const idempotenceKey = generateUUID();\\n\\n      const data = {\\n        amount: {\\n          value: \\\"100.00\\\",\\n          currency: \\\"RUB\\\"\\n        },\\n        capture: true,\\n        confirmation: {\\n          type: \\\"redirect\\\",\\n          return_url: \\\"https:\\\/\\\/www.example.com\\\/return_url\\\"\\n        },\\n        description: \\\"\\u0417\\u0430\\u043a\\u0430\\u0437 \\u21161\\\"\\n      };\\n\\n      fetch('https:\\\/\\\/api.yookassa.ru\\\/v3\\\/payments', {\\n        method: 'POST',\\n        headers: {\\n          'Authorization': 'Basic ' + authData,\\n          'Idempotence-Key': idempotenceKey,\\n          'Content-Type': 'application\\\/json'\\n        },\\n        body: JSON.stringify(data)\\n      })\\n      .then(response => response.json())\\n      .then(data => {\\n        if (data.confirmation && data.confirmation.confirmation_url) {\\n          window.location.href = data.confirmation.confirmation_url;\\n        } else {\\n          console.error('\\u041e\\u0448\\u0438\\u0431\\u043a\\u0430 \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043b\\u0443\\u0447\\u0435\\u043d\\u0438\\u0438 confirmation_url', data);\\n        }\\n      })\\n      .catch(error => {\\n        console.error('\\u041e\\u0448\\u0438\\u0431\\u043a\\u0430:', error);\\n      });\\n    });\\n  <\\\/script>\\n<\\\/body>\\n<\\\/html>\",\"offer\":null,\"offer_before_buttons\":null,\"offer_after_buttons\":null,\"use_email\":false,\"required_email\":false,\"use_phone\":false,\"required_phone\":false,\"is_html_mode\":true,\"agree_policy\":true,\"use_llc_details\":true,\"background_color\":\"#000000\",\"text_color\":\"#00FFF8\",\"main_background_color\":\"#000000\",\"gtm\":null,\"meta_head\":null,\"meta_body\":null,\"fb_verification_content\":null,\"script\":null,\"contact_fields_position\":\"before_buttons\",\"code_blocks\":[{\"code\":\"<!-- LEADTEX widget --><script type=\\\"text\\\/javascript\\\">(function(w,d,s,l){w[l]=w[l]||[];w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5sZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https:\\\/\\\/app.leadteh.ru\\\/js\\\/widget.js';f.parentNode.insertBefore(j,f);})(window,document,'script','wbt');<\\\/script><!-- \\\/LEADTEX widget -->\",\"name\":\"\\u0411\\u043b\\u043e\\u043a #1\"}],\"buttons_theme\":\"default\",\"buttons_show_caption\":false,\"form_fields\":[],\"email_redirect_uri\":null,\"email_alert_title\":\"\\u0412\\u044b \\u0443\\u0441\\u043f\\u0435\\u0448\\u043d\\u043e \\u043f\\u043e\\u0434\\u043f\\u0438\\u0441\\u0430\\u043d\\u044b!\",\"email_alert_body\":\"\\u0421\\u043f\\u0430\\u0441\\u0438\\u0431\\u043e \\u0437\\u0430 \\u043f\\u043e\\u0434\\u043f\\u0438\\u0441\\u043a\\u0443 \\u043d\\u0430 \\u0443\\u0432\\u0435\\u0434\\u043e\\u043c\\u043b\\u0435\\u043d\\u0438\\u044f! \\u0412 \\u0441\\u043a\\u043e\\u0440\\u043e\\u043c \\u0432\\u0440\\u0435\\u043c\\u0435\\u043d\\u0438 \\u043d\\u0430 \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u0443\\u044e \\u0412\\u0430\\u043c\\u0438 \\u043f\\u043e\\u0447\\u0442\\u0443 \\u043f\\u0440\\u0438\\u0434\\u0435\\u0442 \\u043f\\u0438\\u0441\\u044c\\u043c\\u043e :)\",\"tracking_counters\":{\"vk_retarget\":{\"id\":null},\"yandex_metrika\":{\"id\":null},\"google_analytics\":{\"id\":null}},\"version\":1,\"meta_title\":\"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0447\\u0430\\u0442-\\u0431\\u043e\\u0442\\u043e\\u0432 | \\u0421\\u043e\\u0437\\u0434\\u0430\\u043d\\u0438\\u0435 \\u0443\\u043c\\u043d\\u044b\\u0445 \\u0447\\u0430\\u0442-\\u0431\\u043e\\u0442\\u043e\\u0432 \\u0434\\u043b\\u044f \\u0432\\u0430\\u0448\\u0435\\u0433\\u043e \\u0431\\u0438\\u0437\\u043d\\u0435\\u0441\\u0430\",\"meta_description\":\"\\u041f\\u0440\\u043e\\u0444\\u0435\\u0441\\u0441\\u0438\\u043e\\u043d\\u0430\\u043b\\u044c\\u043d\\u0430\\u044f \\u0440\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0447\\u0430\\u0442-\\u0431\\u043e\\u0442\\u043e\\u0432 \\u0434\\u043b\\u044f \\u0432\\u0430\\u0448\\u0435\\u0433\\u043e \\u0431\\u0438\\u0437\\u043d\\u0435\\u0441\\u0430. \\u0421\\u043e\\u0437\\u0434\\u0430\\u0435\\u043c \\u0443\\u043c\\u043d\\u044b\\u0435 \\u0438 \\u0443\\u0434\\u043e\\u0431\\u043d\\u044b\\u0435 \\u0447\\u0430\\u0442-\\u0431\\u043e\\u0442\\u044b \\u0434\\u043b\\u044f \\u0430\\u0432\\u0442\\u043e\\u043c\\u0430\\u0442\\u0438\\u0437\\u0430\\u0446\\u0438\\u0438 \\u043e\\u0431\\u0449\\u0435\\u043d\\u0438\\u044f \\u0441 \\u043a\\u043b\\u0438\\u0435\\u043d\\u0442\\u0430\\u043c\\u0438, \\u043f\\u0440\\u043e\\u0434\\u0430\\u0436 \\u0438 \\u043f\\u043e\\u0434\\u0434\\u0435\\u0440\\u0436\\u043a\\u0438.\",\"messengers\":[],\"header_image_url\":\"https:\\\/\\\/storage.yandexcloud.net\\\/leadconverter\\\/messenger\\\/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg\",\"llc_details\":null,\"privacy_url\":\"https:\\\/\\\/lcvr.net\\\/privacy_policy\\\/21957\",\"made_by_domain\":\"leadconverter.ru\"}");
+    window.trackingParams = JSON.parse("{\"_ym_uid\":\"1716322926922936120\"}");
+    window.requestParams = JSON.parse("[]");
+</script>
 
-    document.getElementById('payButton').addEventListener('click', function() {
-      alert('Кнопка нажата, начинаем запрос');
-      
-      const authData = 'MzEyOTI4OmxpdmVfRzV4LXh3S0UySGpHd1FyTjJpanc4U3N4LUF2VXUzWERCUDhMeFV2TGtXaw==';
-      const idempotenceKey = generateUUID();
+<div id="lgt" class="tailwind">
+    <lgt></lgt>
+</div>
 
-      const data = {
-        amount: {
-          value: "100.00",
-          currency: "RUB"
-        },
-        capture: true,
-        confirmation: {
-          type: "redirect",
-          return_url: "https://www.example.com/return_url"
-        },
-        description: "Заказ №1"
-      };
+<script src="/js/lgt/lgtV2.js?id=796f36f7a5fa992c5a2d"></script>
 
-      fetch('https://api.yookassa.ru/v3/payments', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Basic ' + authData,
-          'Idempotence-Key': idempotenceKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Ошибка сети: ' + response.status + ' ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.confirmation && data.confirmation.confirmation_url) {
-          alert('Запрос успешен, перенаправляем на страницу оплаты');
-          window.location.href = data.confirmation.confirmation_url;
-        } else {
-          alert('Ошибка при получении confirmation_url: ' + JSON.stringify(data));
-          console.error('Ошибка при получении confirmation_url', data);
-        }
-      })
-      .catch(error => {
-        alert('Ошибка: ' + error.message);
-        console.error('Ошибка:', error);
-      });
-    });
-  </script>
+
+            <!-- Блок #1 -->
+        <!-- LEADTEX widget --><script type="text/javascript">(function(w,d,s,l){w[l]=w[l]||[];w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5sZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://app.leadteh.ru/js/widget.js';f.parentNode.insertBefore(j,f);})(window,document,'script','wbt');</script><!-- /LEADTEX widget -->
+    
+
 </body>
 </html>
