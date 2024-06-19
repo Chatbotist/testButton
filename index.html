@@ -45,7 +45,6 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
-            display: none; /* Скрываем изображение по умолчанию */
         }
     </style>
 </head>
@@ -64,7 +63,7 @@
     <script type="text/javascript">
         (function(w,d,s,l){
             w[l]=w[l]||[];
-            w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5sZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});
+            w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5zZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});
             var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s);
             j.async=true;
@@ -79,18 +78,24 @@
         window.Telegram.WebApp.ready();
 
         var user = window.Telegram.WebApp.initDataUnsafe.user;
-        var userId = user.id;
-        var username = user.username;
-        var avatarUrl = user.photo_url;
+        console.log(user); // Выводим данные пользователя в консоль для отладки
 
-        if (avatarUrl) {
-            var userAvatarElem = document.getElementById('userAvatar');
-            userAvatarElem.src = avatarUrl;
-            userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
+        if (user) {
+            var userId = user.id;
+            var username = user.username;
+            var avatarUrl = user.photo_url;
+
+            if (avatarUrl) {
+                var userAvatarElem = document.getElementById('userAvatar');
+                userAvatarElem.src = avatarUrl;
+                userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
+            }
+
+            document.getElementById('username').innerText = '@' + username;
+            document.getElementById('userId').innerText = 'ID: ' + userId;
+        } else {
+            console.error('User data is not available.');
         }
-
-        document.getElementById('username').innerText = '@' + username;
-        document.getElementById('userId').innerText = 'ID: ' + userId;
     </script>
 </body>
 </html>
