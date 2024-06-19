@@ -84,6 +84,9 @@
             var username = user.username;
             var avatarUrl = user.photo_url;
 
+            // Выводим все данные пользователя во всплывающее окно для диагностики
+            alert("User Data: " + JSON.stringify(user));
+
             if (avatarUrl) {
                 var userAvatarElem = document.getElementById('userAvatar');
                 userAvatarElem.onerror = function() {
