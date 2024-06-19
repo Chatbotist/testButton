@@ -96,7 +96,8 @@
                 userAvatarElem.onerror = function() {
                     alert("Не удалось загрузить аватар пользователя.");
                     console.error("Ошибка загрузки аватара пользователя:", avatarUrl); // Выводим ошибку в консоль
-                    userAvatarElem.style.display = 'none'; // Скрываем изображение, если не удалось загрузить
+                    userAvatarElem.src = "https://via.placeholder.com/50"; // Используем заглушку
+                    userAvatarElem.style.display = 'block'; // Показываем изображение заглушки
                 };
                 userAvatarElem.onload = function() {
                     alert("Аватар пользователя успешно загружен.");
@@ -106,7 +107,8 @@
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
             } else {
                 alert("URL аватара пользователя недоступен.");
-                document.getElementById('userAvatar').style.display = 'none';
+                document.getElementById('userAvatar').src = "https://via.placeholder.com/50"; // Используем заглушку
+                document.getElementById('userAvatar').style.display = 'block'; // Показываем изображение заглушки
             }
 
             document.getElementById('username').innerText = '@' + username;
