@@ -89,10 +89,14 @@
             var avatarUrl = user.photo_url;
 
             if (avatarUrl) {
+                alert("User avatar URL: " + avatarUrl);
                 var userAvatarElem = document.getElementById('userAvatar');
                 userAvatarElem.onerror = function() {
                     alert("Failed to load user avatar.");
                     userAvatarElem.style.display = 'none'; // Скрываем изображение, если не удалось загрузить
+                };
+                userAvatarElem.onload = function() {
+                    alert("User avatar loaded successfully.");
                 };
                 userAvatarElem.src = avatarUrl;
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
