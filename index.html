@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оплата</title>
+  <style>
+    .pay-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .pay-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <button class="pay-button" id="payButton">Оплатить</button>
+
+  <script>
+    function generateUUID() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    document.getElementById('payButton').addEventListener('click', function() {
+      alert('Кнопка нажата, начинаем запрос');
+      
+      const authData = 'MzEyOTI4OmxpdmVfRzV4LXh3S0UySGpHd1FyTjJpanc4U3N4LUF2VXUzWERCUDhMeFV2TGtXaw==';
+      const idempotenceKey = generateUUID();
+
+      const data = {
+        amount: {
+          value: "100.00",
+          currency: "RUB"
+        },
+        capture: true,
+        confirmation: {
+          type: "redirect",
+          return_url: "https://www.example.com/return_url"
+        },
+        description: "Заказ №1"
+      };
+
+      fetch('https://api.yookassa.ru/v3/payments', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Basic ' + authData,
+          'Idempotence-Key': idempotenceKey,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Ошибка сети: ' + response.status + ' ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.confirmation && data.confirmation.confirmation_url) {
+          alert('Запрос успешен, перенаправляем на страницу оплаты');
+          window.location.href = data.confirmation.confirmation_url;
+        } else {
+          alert('Ошибка при получении confirmation_url: ' + JSON.stringify(data));
+          console.error('Ошибка при получении confirmation_url', data);
+        }
+      })
+      .catch(error => {
+        alert('Ошибка: ' + error.message);
+        console.error('Ошибка:', error);
+      });
+    });
+  </script>
+</body>
+</html>
