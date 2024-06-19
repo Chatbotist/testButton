@@ -32,10 +32,30 @@
             color: #00FFF8;
             cursor: pointer;
         }
+        .user-info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: #00FFF8;
+        }
+        .user-info img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
     <button class="close-button" onclick="window.Telegram.WebApp.close();">&times;</button>
+
+    <div class="user-info">
+        <img id="userAvatar" src="" alt="User Avatar">
+        <span id="username"></span>
+        <span id="userId"></span>
+    </div>
 
     <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
 
@@ -57,13 +77,14 @@
     <script>
         window.Telegram.WebApp.ready();
 
-        var userId = window.Telegram.WebApp.initDataUnsafe.user.id;
-        var username = window.Telegram.WebApp.initDataUnsafe.user.username;
+        var user = window.Telegram.WebApp.initDataUnsafe.user;
+        var userId = user.id;
+        var username = user.username;
+        var avatarUrl = user.photo_url;
 
-        var spanElem = document.createElement('span');
-        spanElem.id = 'userId';
-        spanElem.innerText = userId;
-        document.body.appendChild(spanElem);
+        document.getElementById('userAvatar').src = avatarUrl;
+        document.getElementById('username').innerText = '@' + username;
+        document.getElementById('userId').innerText = 'ID: ' + userId;
     </script>
 </body>
 </html>
