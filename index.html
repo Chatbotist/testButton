@@ -45,6 +45,7 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
+            display: none; /* Скрываем изображение по умолчанию */
         }
     </style>
 </head>
@@ -82,7 +83,12 @@
         var username = user.username;
         var avatarUrl = user.photo_url;
 
-        document.getElementById('userAvatar').src = avatarUrl;
+        if (avatarUrl) {
+            var userAvatarElem = document.getElementById('userAvatar');
+            userAvatarElem.src = avatarUrl;
+            userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
+        }
+
         document.getElementById('username').innerText = '@' + username;
         document.getElementById('userId').innerText = 'ID: ' + userId;
     </script>
