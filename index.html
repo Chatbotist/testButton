@@ -78,37 +78,37 @@
     <script>
         window.Telegram.WebApp.ready();
 
-        alert("Telegram WebApp is ready");
+        alert("Telegram WebApp готов");
 
         var user = window.Telegram.WebApp.initDataUnsafe.user;
 
         if (user) {
-            alert("User data received: " + JSON.stringify(user));
+            alert("Данные пользователя получены: " + JSON.stringify(user));
             var userId = user.id;
             var username = user.username;
             var avatarUrl = user.photo_url;
 
             if (avatarUrl) {
-                alert("User avatar URL: " + avatarUrl);
+                alert("URL аватара пользователя: " + avatarUrl);
                 var userAvatarElem = document.getElementById('userAvatar');
                 userAvatarElem.onerror = function() {
-                    alert("Failed to load user avatar.");
+                    alert("Не удалось загрузить аватар пользователя.");
                     userAvatarElem.style.display = 'none'; // Скрываем изображение, если не удалось загрузить
                 };
                 userAvatarElem.onload = function() {
-                    alert("User avatar loaded successfully.");
+                    alert("Аватар пользователя успешно загружен.");
                 };
                 userAvatarElem.src = avatarUrl;
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
             } else {
-                alert("User avatar URL is not available.");
+                alert("URL аватара пользователя недоступен.");
                 document.getElementById('userAvatar').style.display = 'none';
             }
 
             document.getElementById('username').innerText = '@' + username;
             document.getElementById('userId').innerText = 'ID: ' + userId;
         } else {
-            alert('User data is not available.');
+            alert('Данные пользователя недоступны.');
         }
     </script>
 </body>
