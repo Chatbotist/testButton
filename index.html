@@ -94,4 +94,10 @@
                 userAvatarElem.src = avatarUrl;
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
             } else {
-                ale
+                document.getElementById('userAvatar').style.display = 'none';
+            }
+
+            document.getElementById('username').innerText = '@' + username;
+            document.getElementById('userId').innerText = 'ID: ' + userId;
+        } else {
+            alert('Данные пользо
