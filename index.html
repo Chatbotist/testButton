@@ -78,7 +78,6 @@
         window.Telegram.WebApp.ready();
 
         var user = window.Telegram.WebApp.initDataUnsafe.user;
-        console.log(user); // Выводим данные пользователя в консоль для отладки
 
         if (user) {
             var userId = user.id;
@@ -88,19 +87,19 @@
             if (avatarUrl) {
                 var userAvatarElem = document.getElementById('userAvatar');
                 userAvatarElem.onerror = function() {
-                    console.error("Failed to load avatar image.");
+                    alert("Не удалось загрузить аватар пользователя.");
                     userAvatarElem.style.display = 'none'; // Скрываем изображение, если не удалось загрузить
                 };
                 userAvatarElem.src = avatarUrl;
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
             } else {
-                console.warn("User avatar URL is not available.");
+                alert("URL аватара пользователя недоступен.");
             }
 
             document.getElementById('username').innerText = '@' + username;
             document.getElementById('userId').innerText = 'ID: ' + userId;
         } else {
-            console.error('User data is not available.');
+            alert('Данные пользователя недоступны.');
         }
     </script>
 </body>
