@@ -14,6 +14,7 @@
             background-color: #000000;
             color: #00FFF8;
             font-family: Arial, sans-serif;
+            position: relative;
         }
         .header-image {
             width: 100%;
@@ -21,9 +22,21 @@
             margin: 0 auto;
             display: block;
         }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            color: #00FFF8;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <button class="close-button" onclick="window.close();">&times;</button>
+
     <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
 
     <!-- LEADTEX widget -->
