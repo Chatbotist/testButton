@@ -90,13 +90,17 @@
 
             if (avatarUrl) {
                 alert("URL аватара пользователя: " + avatarUrl);
+                console.log("URL аватара пользователя:", avatarUrl); // Выводим URL в консоль для проверки
+
                 var userAvatarElem = document.getElementById('userAvatar');
                 userAvatarElem.onerror = function() {
                     alert("Не удалось загрузить аватар пользователя.");
+                    console.error("Ошибка загрузки аватара пользователя:", avatarUrl); // Выводим ошибку в консоль
                     userAvatarElem.style.display = 'none'; // Скрываем изображение, если не удалось загрузить
                 };
                 userAvatarElem.onload = function() {
                     alert("Аватар пользователя успешно загружен.");
+                    console.log("Аватар пользователя успешно загружен:", avatarUrl); // Выводим успешную загрузку в консоль
                 };
                 userAvatarElem.src = avatarUrl;
                 userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
