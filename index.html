@@ -104,8 +104,11 @@
                 });
             });
 
-            // Пример использования MainButton
-            window.Telegram.WebApp.MainButton.setText("Нажми меня");
+            // Пример использования MainButton с изменением цвета
+            window.Telegram.WebApp.MainButton.setParams({
+                text: "Нажми меня",
+                color: "#FF5733" // Устанавливаем цвет кнопки
+            });
             window.Telegram.WebApp.MainButton.show();
 
             // Устанавливаем обработчик события нажатия на основную кнопку
