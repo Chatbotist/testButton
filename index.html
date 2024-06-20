@@ -74,6 +74,9 @@
         // Включаем диалоговое окно подтверждения закрытия
         window.Telegram.WebApp.enableClosingConfirmation();
 
+        // Расширяем окно на максимум
+        window.Telegram.WebApp.expand();
+
         var user = window.Telegram.WebApp.initDataUnsafe.user;
 
         if (user) {
