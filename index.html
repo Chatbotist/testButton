@@ -21,13 +21,6 @@
             background-color: #000000;
             color: #00FFF8;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             position: relative;
         }
         /* Устанавливаем стили для изображения в заголовке */
@@ -36,7 +29,6 @@
             max-width: 600px;
             margin: 0 auto;
             display: block;
-            object-fit: contain; /* Изменение здесь */
         }
         /* Устанавливаем стили для кнопки закрытия */
         .close-button {
@@ -59,59 +51,9 @@
             align-items: flex-start;
             color: #FFFFFF;
         }
-        /* Устанавливаем стили для контейнера изображения */
-        .image-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1; /* Изменение здесь */
-        }
-        /* Устанавливаем стили для окна загрузки */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-        }
-        .loading-text {
-            color: #00FFF8;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .loading-bar {
-            width: 80%;
-            height: 20px;
-            background-color: #333;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .loading-bar-fill {
-            height: 100%;
-            background-color: #00FFF8;
-            width: 0;
-            transition: width 0.3s;
-        }
     </style>
 </head>
 <body>
-    <!-- Окно загрузки -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-text" id="loadingText">Загрузка... 0%</div>
-        <div class="loading-bar">
-            <div class="loading-bar-fill" id="loadingBarFill"></div>
-        </div>
-    </div>
-
     <!-- Кнопка закрытия -->
     <button class="close-button" id="closeButton">&times;</button>
 
@@ -121,66 +63,55 @@
         <span id="userId"></span>
     </div>
 
-    <!-- Контейнер для изображения -->
-    <div class="image-container">
-        <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
-    </div>
+    <!-- Изображение в заголовке -->
+    <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
 
     <!-- Подключение скрипта Telegram WebApp -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        // Функция для обновления статуса загрузки
-        function updateLoadingStatus(percentage) {
-            document.getElementById('loadingText').innerText = 'Загрузка... ' + percentage + '%';
-            document.getElementById('loadingBarFill').style.width = percentage + '%';
-        }
-
         window.addEventListener('load', function() {
-            // Симуляция процесса загрузки
-            let loadProgress = 0;
-            const loadingInterval = setInterval(function() {
-                loadProgress += 10;
-                updateLoadingStatus(loadProgress);
+            // Уведомляем Telegram WebApp, что приложение готово
+            window.Telegram.WebApp.ready();
 
-                if (loadProgress >= 100) {
-                    clearInterval(loadingInterval);
-                    document.getElementById('loadingScreen').style.display = 'none';
+            // Включаем диалоговое окно подтверждения закрытия
+            window.Telegram.WebApp.enableClosingConfirmation();
 
-                    // Уведомляем Telegram WebApp, что приложение готово
-                    window.Telegram.WebApp.ready();
+            // Расширяем окно на максимум
+            window.Telegram.WebApp.expand();
 
-                    // Включаем диалоговое окно подтверждения закрытия
-                    window.Telegram.WebApp.enableClosingConfirmation();
+            // Получаем данные пользователя
+            var user = window.Telegram.WebApp.initDataUnsafe.user;
 
-                    // Расширяем окно на максимум
-                    window.Telegram.WebApp.expand();
+            // Если данные пользователя доступны, отображаем их
+            if (user) {
+                var userId = user.id;
+                var username = user.username;
 
-                    // Получаем данные пользователя
-                    var user = window.Telegram.WebApp.initDataUnsafe.user;
+                document.getElementById('username').innerText = '@' + username;
+                document.getElementById('userId').innerText = 'ID: ' + userId;
+            } else {
+                document.getElementById('username').innerText = 'Данные пользователя недоступны';
+            }
 
-                    // Если данные пользователя доступны, отображаем их
-                    if (user) {
-                        var userId = user.id;
-                        var username = user.username;
-
-                        document.getElementById('username').innerText = '@' + username;
-                        document.getElementById('userId').innerText = 'ID: ' + userId;
-                    } else {
-                        document.getElementById('username').innerText = 'Данные пользователя недоступны';
+            // Добавляем обработчик события на кнопку закрытия
+            document.getElementById('closeButton').addEventListener('click', function() {
+                // Показываем окно подтверждения с текстом "😟 Уже уходите?"
+                window.Telegram.WebApp.showConfirm("😟 Уже уходите?", function(confirmed) {
+                    // Если пользователь нажал "ОК" (да), закрываем приложение
+                    if (confirmed) {
+                        window.Telegram.WebApp.close();
                     }
+                });
+            });
 
-                    // Добавляем обработчик события на кнопку закрытия
-                    document.getElementById('closeButton').addEventListener('click', function() {
-                        // Показываем окно подтверждения с текстом "😟 Уже уходите?"
-                        window.Telegram.WebApp.showConfirm("😟 Уже уходите?", function(confirmed) {
-                            // Если пользователь нажал "ОК" (да), закрываем приложение
-                            if (confirmed) {
-                                window.Telegram.WebApp.close();
-                            }
-                        });
-                    });
-                }
-            }, 10); // Увеличиваем прогресс каждые 100 мс
+            // Пример использования MainButton
+            window.Telegram.WebApp.MainButton.setText("Нажми меня");
+            window.Telegram.WebApp.MainButton.show();
+
+            // Устанавливаем обработчик события нажатия на основную кнопку
+            window.Telegram.WebApp.MainButton.onClick(function() {
+                alert("Кнопка нажата!");
+            });
         });
     </script>
 </body>
