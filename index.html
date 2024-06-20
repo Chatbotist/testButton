@@ -69,25 +69,25 @@
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.ready(function() {
+            // Включаем диалоговое окно подтверждения закрытия
+            window.Telegram.WebApp.enableClosingConfirmation();
 
-        // Включаем диалоговое окно подтверждения закрытия
-        window.Telegram.WebApp.enableClosingConfirmation();
+            // Расширяем окно на максимум
+            window.Telegram.WebApp.expand();
 
-        // Расширяем окно на максимум
-        window.Telegram.WebApp.expand();
+            var user = window.Telegram.WebApp.initDataUnsafe.user;
 
-        var user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                var userId = user.id;
+                var username = user.username;
 
-        if (user) {
-            var userId = user.id;
-            var username = user.username;
-
-            document.getElementById('username').innerText = '@' + username;
-            document.getElementById('userId').innerText = 'ID: ' + userId;
-        } else {
-            document.getElementById('username').innerText = 'Данные пользователя недоступны';
-        }
+                document.getElementById('username').innerText = '@' + username;
+                document.getElementById('userId').innerText = 'ID: ' + userId;
+            } else {
+                document.getElementById('username').innerText = 'Данные пользователя недоступны';
+            }
+        });
     </script>
 </body>
 </html>
