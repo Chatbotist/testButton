@@ -69,7 +69,9 @@
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        window.Telegram.WebApp.ready(function() {
+        window.addEventListener('load', function() {
+            window.Telegram.WebApp.ready();
+
             // Включаем диалоговое окно подтверждения закрытия
             window.Telegram.WebApp.enableClosingConfirmation();
 
