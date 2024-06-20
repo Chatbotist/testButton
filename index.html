@@ -77,18 +77,10 @@
             }
 
             document.getElementById('closeButton').addEventListener('click', function() {
-                window.Telegram.WebApp.showScanQrPopup({
-                    text: "Уже уходите?",
-                    showCancelButton: true,
-                    showConfirmButton: true,
-                    confirmButtonText: "Да",
-                    cancelButtonText: "Нет"
-                }, function(qrText) {
-                    if (qrText === "Да") {
+                window.Telegram.WebApp.showConfirm("😟 Уже уходите?", function(confirmed) {
+                    if (confirmed) {
                         window.Telegram.WebApp.close();
                     }
-                    // Возвращаем true, чтобы закрыть popup
-                    return true;
                 });
             });
         });
