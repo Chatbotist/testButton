@@ -129,7 +129,7 @@
 
             // Пример использования MainButton с указанным цветом и белым текстом
             window.Telegram.WebApp.MainButton.setParams({
-                text: "Нажми меня",
+                text: "Заказать чат-бота", // Устанавливаем новый текст кнопки
                 color: "rgb(43, 224, 30)", // Устанавливаем цвет кнопки по RGB
                 text_color: "#FFFFFF" // Белый цвет текста
             });
@@ -137,7 +137,9 @@
 
             // Устанавливаем обработчик события нажатия на основную кнопку
             window.Telegram.WebApp.MainButton.onClick(function() {
-                alert("Кнопка нажата!");
+                // Переход по ссылке и закрытие окна
+                window.Telegram.WebApp.openLink("https://t.me/ChatbotistBot");
+                window.Telegram.WebApp.close();
             });
         });
     </script>
