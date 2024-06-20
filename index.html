@@ -58,6 +58,9 @@
         window.addEventListener('load', function() {
             window.Telegram.WebApp.ready();
 
+            // Включаем диалоговое окно подтверждения закрытия
+            window.Telegram.WebApp.enableClosingConfirmation();
+
             // Расширяем окно на максимум
             window.Telegram.WebApp.expand();
 
@@ -74,10 +77,19 @@
             }
 
             document.getElementById('closeButton').addEventListener('click', function() {
-                var confirmation = confirm("Уже уходите?");
-                if (confirmation) {
-                    window.Telegram.WebApp.close();
-                }
+                window.Telegram.WebApp.showScanQrPopup({
+                    text: "Уже уходите?",
+                    showCancelButton: true,
+                    showConfirmButton: true,
+                    confirmButtonText: "Да",
+                    cancelButtonText: "Нет"
+                }, function(qrText) {
+                    if (qrText === "Да") {
+                        window.Telegram.WebApp.close();
+                    }
+                    // Возвращаем true, чтобы закрыть popup
+                    return true;
+                });
             });
         });
     </script>
