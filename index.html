@@ -41,33 +41,15 @@
             align-items: flex-start;
             color: #FFFFFF;
         }
-        .user-info img {
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: none; /* Скрываем изображение по умолчанию */
-        }
-        .debug-info {
-            position: absolute;
-            top: 100px;
-            left: 10px;
-            color: #FFFFFF;
-            background-color: #333333;
-            padding: 10px;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
     <button class="close-button" onclick="window.Telegram.WebApp.close();">&times;</button>
 
     <div class="user-info">
-        <img id="userAvatar" src="" alt="User Avatar">
         <span id="username"></span>
         <span id="userId"></span>
     </div>
-
-    <div class="debug-info" id="debugInfo"></div>
 
     <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
 
@@ -89,46 +71,19 @@
     <script>
         window.Telegram.WebApp.ready();
 
-        alert("Telegram WebApp готов");
-
-        var debugInfoElem = document.getElementById('debugInfo');
-
-        function updateDebugInfo(message) {
-            debugInfoElem.innerHTML += message + '<br>';
-        }
+        // Включаем диалоговое окно подтверждения закрытия
+        window.Telegram.WebApp.enableClosingConfirmation();
 
         var user = window.Telegram.WebApp.initDataUnsafe.user;
 
         if (user) {
-            updateDebugInfo("Данные пользователя получены: " + JSON.stringify(user));
             var userId = user.id;
             var username = user.username;
-            var avatarUrl = user.photo_url;
-
-            if (avatarUrl) {
-                updateDebugInfo("URL аватара пользователя: " + avatarUrl);
-
-                var userAvatarElem = document.getElementById('userAvatar');
-                userAvatarElem.onerror = function() {
-                    updateDebugInfo("Не удалось загрузить аватар пользователя.");
-                    userAvatarElem.src = "https://via.placeholder.com/50"; // Используем заглушку
-                    userAvatarElem.style.display = 'block'; // Показываем изображение заглушки
-                };
-                userAvatarElem.onload = function() {
-                    updateDebugInfo("Аватар пользователя успешно загружен.");
-                };
-                userAvatarElem.src = avatarUrl;
-                userAvatarElem.style.display = 'block'; // Показываем изображение, если аватар существует
-            } else {
-                updateDebugInfo("URL аватара пользователя недоступен.");
-                document.getElementById('userAvatar').src = "https://via.placeholder.com/50"; // Используем заглушку
-                document.getElementById('userAvatar').style.display = 'block'; // Показываем изображение заглушки
-            }
 
             document.getElementById('username').innerText = '@' + username;
             document.getElementById('userId').innerText = 'ID: ' + userId;
         } else {
-            updateDebugInfo('Данные пользователя недоступны.');
+            document.getElementById('username').innerText = 'Данные пользователя недоступны';
         }
     </script>
 </body>
