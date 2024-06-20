@@ -79,6 +79,14 @@
             // Расширяем окно на максимум
             window.Telegram.WebApp.expand();
 
+            // Прокручиваем страницу до конца с небольшой задержкой
+            setTimeout(function() {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 500); // Задержка в 500 мс перед началом прокрутки
+
             // Получаем данные пользователя
             var user = window.Telegram.WebApp.initDataUnsafe.user;
 
