@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <button class="close-button" onclick="window.Telegram.WebApp.close();">&times;</button>
+    <button class="close-button" id="closeButton">&times;</button>
 
     <div class="user-info">
         <span id="username"></span>
@@ -57,9 +57,6 @@
     <script>
         window.addEventListener('load', function() {
             window.Telegram.WebApp.ready();
-
-            // Включаем диалоговое окно подтверждения закрытия
-            window.Telegram.WebApp.enableClosingConfirmation();
 
             // Расширяем окно на максимум
             window.Telegram.WebApp.expand();
@@ -75,6 +72,13 @@
             } else {
                 document.getElementById('username').innerText = 'Данные пользователя недоступны';
             }
+
+            document.getElementById('closeButton').addEventListener('click', function() {
+                var confirmation = confirm("Уже уходите?");
+                if (confirmation) {
+                    window.Telegram.WebApp.close();
+                }
+            });
         });
     </script>
 </body>
