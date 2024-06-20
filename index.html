@@ -58,6 +58,15 @@
             align-items: flex-start;
             color: #FFFFFF;
         }
+        /* Устанавливаем стили для контейнера изображения */
+        .image-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         /* Устанавливаем стили для окна загрузки */
         .loading-screen {
             position: fixed;
@@ -110,8 +119,10 @@
         <span id="userId"></span>
     </div>
 
-    <!-- Изображение в заголовке -->
-    <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
+    <!-- Контейнер для изображения -->
+    <div class="image-container">
+        <img src="https://storage.yandexcloud.net/leadconverter/messenger/b9ibkCzXw9QjMrsIlziU9qer1ImXkhRU5fvB85j8.jpg" alt="Чат-боты" class="header-image">
+    </div>
 
     <!-- Подключение скрипта Telegram WebApp -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
