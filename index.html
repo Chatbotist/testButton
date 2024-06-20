@@ -36,6 +36,7 @@
             max-width: 600px;
             margin: 0 auto;
             display: block;
+            object-fit: contain; /* Изменение здесь */
         }
         /* Устанавливаем стили для кнопки закрытия */
         .close-button {
@@ -66,6 +67,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-grow: 1; /* Изменение здесь */
         }
         /* Устанавливаем стили для окна загрузки */
         .loading-screen {
@@ -178,7 +180,7 @@
                         });
                     });
                 }
-            }, 100); // Увеличиваем прогресс каждые 500 мс
+            }, 100); // Увеличиваем прогресс каждые 100 мс
         });
     </script>
 </body>
